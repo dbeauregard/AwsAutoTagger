@@ -1,0 +1,70 @@
+{
+    "version": "0",
+    "id": "8bf56b52-f3d6-54a7-40b2-f37735bb5e3a",
+    "detail-type": "Config Configuration Item Change",
+    "source": "aws.config",
+    "account": "536506487112",
+    "time": "2024-02-29T02:54:49Z",
+    "region": "us-west-2",
+    "resources": [
+        "arn:aws:ec2:us-west-2:536506487112:security-group/sg-0c4414f68b93d8f46"
+    ],
+    "detail": {
+        "recordVersion": "1.3",
+        "messageType": "ConfigurationItemChangeNotification",
+        "configurationItemDiff": {
+            "changedProperties": {},
+            "changeType": "CREATE"
+        },
+        "notificationCreationTime": "2024-02-29T02:54:49.217Z",
+        "configurationItem": {
+            "relatedEvents": [],
+            "relationships": [
+                {
+                    "resourceId": "vpc-0416c1e0318b9268f",
+                    "resourceType": "AWS::EC2::VPC",
+                    "name": "Is contained in Vpc"
+                }
+            ],
+            "configuration": {
+                "description": "test",
+                "groupName": "testy",
+                "ipPermissions": [],
+                "ownerId": "536506487112",
+                "groupId": "sg-0c4414f68b93d8f46",
+                "ipPermissionsEgress": [
+                    {
+                        "ipProtocol": "-1",
+                        "ipv6Ranges": [],
+                        "prefixListIds": [],
+                        "userIdGroupPairs": [],
+                        "ipv4Ranges": [
+                            {
+                                "cidrIp": "0.0.0.0/0"
+                            }
+                        ],
+                        "ipRanges": [
+                            "0.0.0.0/0"
+                        ]
+                    }
+                ],
+                "tags": [],
+                "vpcId": "vpc-0416c1e0318b9268f"
+            },
+            "supplementaryConfiguration": {},
+            "tags": {},
+            "configurationItemVersion": "1.3",
+            "configurationItemCaptureTime": "2024-02-29T02:54:48.417Z",
+            "configurationStateId": 1709175288417,
+            "awsAccountId": "536506487112",
+            "configurationItemStatus": "ResourceDiscovered",
+            "resourceType": "AWS::EC2::SecurityGroup",
+            "resourceId": "sg-0c4414f68b93d8f46",
+            "resourceName": "testy",
+            "ARN": "arn:aws:ec2:us-west-2:536506487112:security-group/sg-0c4414f68b93d8f46",
+            "awsRegion": "us-west-2",
+            "availabilityZone": "Not Applicable",
+            "configurationStateMd5Hash": ""
+        }
+    }
+}
