@@ -1,3 +1,4 @@
+# Source: https://medium.com/@TechStoryLines/automatically-tagging-aws-resources-with-usernames-a-brief-automation-guide-57d70455e66a
 import json
 import boto3
 def lambda_handler(event, context): 
