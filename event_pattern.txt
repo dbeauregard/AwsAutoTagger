@@ -1,0 +1,10 @@
+{
+  "detail": {
+    "configurationItem": {
+      "configurationItemStatus": ["ResourceDiscovered"]
+    },
+    "messageType": ["ConfigurationItemChangeNotification"]
+  },
+  "detail-type": ["Config Configuration Item Change"],
+  "source": ["aws.config"]
+}
