@@ -17,5 +17,7 @@ Auto tag new AWS Resources
 5. On the "AWS Managed Rules" page keep the defaults and click "Next"
 6. On the "Review" page click "Confirm"
 
-Todo
-- Tag volumes?
+Todo:
+- AWS Config Settings (IAM)
+- AWS Config Retention (S3) Duration
+- Cloud Formation Install
