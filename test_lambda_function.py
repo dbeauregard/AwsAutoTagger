@@ -3,6 +3,18 @@ import lambda_function
 
 class TestLambdaFunction(unittest.TestCase):
 
+    def test_arn_g1(self):
+        result = lambda_function.parse_arn("arn:partition:service:region:account-id:resource-id")
+        self.assertEqual(result, "resource-id")
+
+    def test_arn_g2(self):
+        result = lambda_function.parse_arn("arn:partition:service:region:account-id:resource-type/resource-id")
+        self.assertEqual(result, "resource-id")
+
+    def test_arn_g3(self):
+        result = lambda_function.parse_arn("arn:partition:service:region:account-id:resource-type:resource-id")
+        self.assertEqual(result, "resource-id")
+
     def test_arn_instance(self):
         result = lambda_function.parse_arn("arn:aws:ec2:us-west-2:536506487112:instance/i-0d749cf8a07eebe9a")
         self.assertEqual(result, "i-0d749cf8a07eebe9a")
