@@ -108,14 +108,3 @@ def parse_arn(arn):
         print("Can't parse ARN= " + arn)
         return None
     return result["resource"]
-
-result = parse_arn("arn:aws:ec2:us-west-2:536506487112:instance/i-0d749cf8a07eebe9a")
-print(result)
-result = parse_arn("arn:aws:s3:::config-bucket-536506487112")
-print(result)
-result = parse_arn("arn:aws:s3:::config-bucket-536506487112/AWSLogs/536506487112/")
-print(result)
-result = parse_arn("arn:aws:autoscaling:us-west-2:536506487112:autoScalingGroup:9796b4f3-a7db-4401-8443-445be4e0da8e:autoScalingGroupName/eks-default-node-pool-82c70605-7b57-3d97-8ea2-1c9b69858b0d")
-print(result)
-result = parse_arn("arn:aws:eks:us-west-2:536506487112:addon/testy2/coredns/80c70604-2e61-4b46-45e5-58e39fc72b94")
-print(result)
