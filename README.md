@@ -24,6 +24,8 @@ Todo:
 
 Works with:
 - EC2 Instances (and associated ENI, SG, Vol)
+- ASGs
+- Load Balancers
 - Lambda Functions
 - S3 Buckets
 - EKS
@@ -33,7 +35,5 @@ Works with:
 * give the lambda function more permissions, e.g., All or PowerUser to increse list
 
 Know not to work with:
+- AWS::EKS::Addon
 - AWS::EC2::EC2Fleet (EKS)
-- AWS::EC2::NetworkInterface (EKS)
-- AWS::AutoScaling::AutoScalingGroup (EKS) - not in cloudtrail, long ARN
-- AWS::EKS::Addon (EKS)

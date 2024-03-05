@@ -24,7 +24,7 @@ def lambda_handler(event, context):
         return #can't proceed
         
     print("user_name= " + user_name)
-    print("time= " + timestamp)
+    #print("time= " + timestamp)
     
     # Tag the Resource
     tag_resource(event_arn, user_name, timestamp)
