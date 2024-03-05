@@ -4,6 +4,9 @@ def lambda_handler(event, context):
     event_arn = event["resources"][0]
     
     resource_name = parse_arn(event_arn)
+    if resource_name is None:
+        return #can't proceed
+
     resource_type = event["detail"]["configurationItem"]["resourceType"]
     timestamp = event["time"]
 
@@ -17,6 +20,8 @@ def lambda_handler(event, context):
     
     # Lookup the User Name in CloudTrail
     user_name = lookup_user(resource_name)
+    if user_name is None:
+        return #can't proceed
         
     print("user_name= " + user_name)
     print("time= " + timestamp)
@@ -50,6 +55,11 @@ def lookup_user(resourceName):
         MaxResults=1
     )
 
+    event_list=response["Events"]
+    if not event_list:
+        print("ResourceName " + resourceName + " not in CloudTrail")
+        return None
+    
     user_name=response["Events"][0]["Username"]
     return user_name
     
@@ -69,6 +79,9 @@ def getInstanceName(event, resource_name):
     return resource_name
 
 def parse_arn(arn):
+    #arn:aws:eks:us-west-2:536506487112:addon/testy2/coredns/80c70604-2e61-4b46-45e5-58e39fc72b94
+    #arn:aws:autoscaling:us-west-2:536506487112:autoScalingGroup:9796b4f3-a7db-4401-8443-445be4e0da8e:autoScalingGroupName/eks-default-node-pool-82c70605-7b57-3d97-8ea2-1c9b69858b0d
+    #arn:aws:ec2:us-west-2:536506487112:instance/i-0d749cf8a07eebe9a
     # http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html
     elements = arn.split(':')
     result = {'arn': elements[0],
@@ -77,11 +90,32 @@ def parse_arn(arn):
             'region': elements[3],
             'account': elements[4]
            }
-    if len(elements) == 7:
+    
+    if len(elements) == 8 and '/' in elements[7]:
+        elements2 = elements[7].split('/')
+        l = len(elements2)
+        result['resourcetype'], result['resource'] = elements2[l-2], elements2[l-1]
+    elif len(elements) == 7:
         result['resourcetype'], result['resource'] = elements[5:]
     elif '/' not in elements[5]:
         result['resource'] = elements[5]
         result['resourcetype'] = None
+    elif '/' in elements[5]:
+        elements2 = elements[5].split('/')
+        l = len(elements2)
+        result['resourcetype'], result['resource'] = elements2[l-2], elements2[l-1]
     else:
-        result['resourcetype'], result['resource'] = elements[5].split('/')
+        print("Can't parse ARN= " + arn)
+        return None
     return result["resource"]
+
+result = parse_arn("arn:aws:ec2:us-west-2:536506487112:instance/i-0d749cf8a07eebe9a")
+print(result)
+result = parse_arn("arn:aws:s3:::config-bucket-536506487112")
+print(result)
+result = parse_arn("arn:aws:s3:::config-bucket-536506487112/AWSLogs/536506487112/")
+print(result)
+result = parse_arn("arn:aws:autoscaling:us-west-2:536506487112:autoScalingGroup:9796b4f3-a7db-4401-8443-445be4e0da8e:autoScalingGroupName/eks-default-node-pool-82c70605-7b57-3d97-8ea2-1c9b69858b0d")
+print(result)
+result = parse_arn("arn:aws:eks:us-west-2:536506487112:addon/testy2/coredns/80c70604-2e61-4b46-45e5-58e39fc72b94")
+print(result)

@@ -21,3 +21,19 @@ Todo:
 - AWS Config Settings (IAM)
 - AWS Config Retention (S3) Duration
 - Cloud Formation Install
+
+Works with:
+- EC2 Instances (and associated ENI, SG, Vol)
+- Lambda Functions
+- S3 Buckets
+- EKS
+- ECR
+- ECS
+- RDS
+* give the lambda function more permissions, e.g., All or PowerUser to increse list
+
+Know not to work with:
+- AWS::EC2::EC2Fleet (EKS)
+- AWS::EC2::NetworkInterface (EKS)
+- AWS::AutoScaling::AutoScalingGroup (EKS) - not in cloudtrail, long ARN
+- AWS::EKS::Addon (EKS)
